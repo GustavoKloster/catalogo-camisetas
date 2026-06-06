@@ -63,7 +63,11 @@ const cart       = useCartStore()
 const categories = ref([])
 
 onMounted(async () => {
-  const { data } = await categoryService.getAll()
-  categories.value = data.data
+  try {
+    const { data } = await categoryService.getAll()
+    categories.value = data.data
+  } catch (err) {
+    console.error('Erro ao carregar categorias:', err)
+  }
 })
 </script>

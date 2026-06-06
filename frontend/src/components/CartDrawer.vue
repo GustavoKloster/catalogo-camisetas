@@ -61,7 +61,7 @@
                    rounded-xl p-3 group"
           >
             <!-- Imagem -->
-            <div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-brand-surface">
+            <div class="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-brand-surface">
               <img
                 :src="item.image"
                 :alt="item.name"
@@ -132,7 +132,7 @@
           @click="cart.checkoutWhatsApp()"
           class="btn-whatsapp w-full py-4 text-base"
         >
-          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148
                      -.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075
                      -.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059

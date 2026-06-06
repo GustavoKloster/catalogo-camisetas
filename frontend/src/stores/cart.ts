@@ -2,27 +2,54 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useToastStore } from './toast'
 
-export const useCartStore = defineStore('cart', () => {
-  const items    = ref([])
-  const isOpen   = ref(false)
-  const WHATSAPP = '5511999999999' // ← Substitua pelo número real
+// ✅ Tipagem do produto recebido da API
+interface Product {
+  id:        number
+  name:      string
+  team:      string
+  version:   string
+  price:     number
+  image_url: string
+  slug:      string
+}
 
-  const totalItems = computed(() =>
+// ✅ Tipagem do item dentro do carrinho
+interface CartItem {
+  key:      string
+  id:       number
+  name:     string
+  team:     string
+  version:  string
+  price:    number
+  image:    string
+  size:     string
+  quantity: number
+}
+
+// ✅ Utilitário para formatar moeda BRL (evita duplicação)
+const formatBRL = (value: number): string =>
+  value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+
+export const useCartStore = defineStore('cart', () => {
+  const items  = ref<CartItem[]>([])
+  const isOpen = ref(false)
+
+  // ✅ Número do WhatsApp lido de variável de ambiente (não expõe no código)
+  const WHATSAPP = import.meta.env.VITE_WHATSAPP_NUMBER as string
+
+  const totalItems = computed<number>(() =>
     items.value.reduce((sum, i) => sum + i.quantity, 0)
   )
 
-  const totalPrice = computed(() =>
+  const totalPrice = computed<number>(() =>
     items.value.reduce((sum, i) => sum + i.price * i.quantity, 0)
   )
 
-  const formattedTotal = computed(() =>
-    totalPrice.value.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    })
+  const formattedTotal = computed<string>(() =>
+    formatBRL(totalPrice.value)
   )
 
-  function addItem(product, size) {
+  function addItem(product: Product, size: string): void {
     const toast    = useToastStore()
     const key      = `${product.id}-${size}`
     const existing = items.value.find(i => i.key === key)
@@ -36,7 +63,8 @@ export const useCartStore = defineStore('cart', () => {
         name:    product.name,
         team:    product.team,
         version: product.version,
-        price:   product.price,
+        // ✅ Proteção contra price null/undefined vindo da API
+        price:   product.price ?? 0,
         image:   product.image_url,
         size,
         quantity: 1,
@@ -47,11 +75,11 @@ export const useCartStore = defineStore('cart', () => {
     isOpen.value = true
   }
 
-  function removeItem(key) {
+  function removeItem(key: string): void {
     items.value = items.value.filter(i => i.key !== key)
   }
 
-  function updateQuantity(key, delta) {
+  function updateQuantity(key: string, delta: number): void {
     const item = items.value.find(i => i.key === key)
     if (!item) return
     const next = item.quantity + delta
@@ -62,17 +90,15 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  function clearCart() {
+  function clearCart(): void {
     items.value = []
   }
 
-  function checkoutWhatsApp() {
+  function checkoutWhatsApp(): void {
     if (!items.value.length) return
 
     const lines = items.value.map(i => {
-      const subtotal = (i.price * i.quantity).toLocaleString('pt-BR', {
-        style: 'currency', currency: 'BRL',
-      })
+      const subtotal = formatBRL(i.price * i.quantity)
       return `• ${i.name}\n  Tamanho: *${i.size}* | Qtd: *${i.quantity}* | ${subtotal}`
     })
 
@@ -89,18 +115,18 @@ export const useCartStore = defineStore('cart', () => {
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`, '_blank')
   }
 
-  function quickBuyWhatsApp(product, size) {
-    const price = product.price.toLocaleString('pt-BR', {
-      style: 'currency', currency: 'BRL',
-    })
+  function quickBuyWhatsApp(product: Product, size: string): void {
+    // ✅ Proteção contra price null/undefined
+    const price = formatBRL(product.price ?? 0)
+
     const message = [
-      `🏆 *THAI SHIRTS — Compra Rápida*`,
-      `━━━━━━━━━━━━━━━━━━━━━━`,
+      '🏆 *THAI SHIRTS — Compra Rápida*',
+      '━━━━━━━━━━━━━━━━━━━━━━',
       `👕 *${product.name}*`,
       `📏 Tamanho: *${size}*`,
       `💰 Valor: *${price}*`,
-      ``,
-      `Olá! Tenho interesse nesta camisa. 😊`,
+      '',
+      'Olá! Tenho interesse nesta camisa. 😊',
     ].join('\n')
 
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`, '_blank')
