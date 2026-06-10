@@ -1,31 +1,14 @@
 <template>
-<<<<<<< HEAD
   <div class="min-h-screen bg-brand-dark text-white flex flex-col">
 
     <!-- HERO -->
     <section class="bg-brand-surface border-b border-brand-border py-16 md:py-24 text-center px-4 shadow-sm relative overflow-hidden">
       <div class="absolute inset-0 bg-brand-gold/5 blur-3xl rounded-full w-96 h-96 mx-auto top-10 pointer-events-none"></div>
 
-=======
-  <!-- Main container da HomeView -->
-  <div class="min-h-screen bg-brand-dark text-white flex flex-col">
-    
-    <!-- Hero / Banner Superior -->
-    <section class="bg-brand-surface border-b border-brand-border py-16 md:py-24 text-center px-4 shadow-sm relative overflow-hidden">
-      <!-- Elemento de fundo sutil para dar destaque -->
-      <div class="absolute inset-0 bg-brand-gold/5 blur-3xl rounded-full w-96 h-96 mx-auto top-10 pointer-events-none"></div>
-      
->>>>>>> 413c86821c3776cb5d7343b8517455547d5f7f67
       <div class="relative z-10">
         <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">
           Catálogo Premium <span class="text-brand-gold">1:1</span>
         </h1>
-<<<<<<< HEAD
-
-=======
-        
-        <!-- COPY ATUALIZADO: Foco em instigar a compra da 2ª peça -->
->>>>>>> 413c86821c3776cb5d7343b8517455547d5f7f67
         <div class="max-w-2xl mx-auto space-y-3 mt-6">
           <p class="text-xl md:text-2xl font-bold text-brand-gold">
             🔥 DUPLA DE ATAQUE FORMADA! 🔥
@@ -36,18 +19,13 @@
           <p class="text-white font-medium bg-brand-gold/10 inline-block px-4 py-2 rounded-lg border border-brand-gold/20">
             Na compra de qualquer camisa, a <strong class="text-brand-gold">2ª unidade sai com 30% DE DESCONTO!</strong> 😱
           </p>
-<<<<<<< HEAD
           <p class="text-sm text-gray-500 mt-4 italic">
-=======
-          <p class="text-sm  text-gray-500 mt-4 italic"> 
->>>>>>> 413c86821c3776cb5d7343b8517455547d5f7f67
             Desconto aplicado direto no WhatsApp.
           </p>
         </div>
       </div>
     </section>
 
-<<<<<<< HEAD
     <!-- CARROSSÉIS -->
     <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-16">
 
@@ -104,45 +82,11 @@
           </div>
         </div>
       </section>
-=======
-    <!-- Seção da Vitrine / Carrossel -->
-    <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-      
-      <!-- Cabeçalho da Seção -->
-      <div class="mb-8 flex items-end justify-between border-b border-brand-border/50 pb-4">
-        <div>
-          <h2 class="text-2xl md:text-3xl font-black flex items-center gap-2">
-            <span class="text-brand-gold">🇧🇷</span> Destaques do Brasil
-          </h2>
-          <p class="text-sm text-gray-500 mt-1">Conheça as versões disponíveis</p>
-        </div>
-        <!-- Aviso de deslizar que aparece só em telas maiores -->
-        <span class="hidden md:inline-block text-xs text-brand-gold font-bold uppercase tracking-widest bg-brand-gold/10 px-3 py-1 rounded-full border border-brand-gold/20">
-          Deslize para ver →
-        </span>
-      </div>
-
-      <!-- Carrossel (Scroll Horizontal com CSS) -->
-      <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-2 hide-scrollbar items-stretch">
-        
-        <!-- Loop puxando os produtos da nossa lista -->
-        <div 
-          v-for="product in brazilProducts" 
-          :key="product.id"
-          class="snap-start shrink-0 w-[280px] sm:w-[320px] flex flex-col"
-        >
-          <!-- Seu componente ProductCard! -->
-          <ProductCard :product="product" class="h-full shadow-lg" />
-        </div>
-
-      </div>
->>>>>>> 413c86821c3776cb5d7343b8517455547d5f7f67
 
     </main>
   </div>
 </template>
 
-<<<<<<< HEAD
 <script setup lang="ts">
 import { ref } from 'vue'
 import CarouselSection from '@/components/CarouselSection.vue'
@@ -154,6 +98,7 @@ interface Product {
   team:      string
   season:    string
   price:     number
+  old_price?: number;
   version:   string
   image_url: string
 }
@@ -172,29 +117,16 @@ const categories = ref<Category[]>([
 
 // 1. Mais Vendidas — já populado com as camisas do Brasil
 const bestSellers = ref<Product[]>([
-=======
-<script setup>
-import { ref } from 'vue'
-import ProductCard from '@/components/ProductCard.vue'
-
-// Nosso "Banco de Dados" provisório. 
-const brazilProducts = ref([
->>>>>>> 413c86821c3776cb5d7343b8517455547d5f7f67
   {
     id: 1,
     slug: 'camisa-brasil-26-27-jogador',
     name: 'Camisa Brasil Jogador 26/27',
     team: 'Seleção Brasileira',
     season: '2026/2027',
-<<<<<<< HEAD
     price: 179.99,
+    old_price: 229.99,
     version: 'Jogador',
     image_url: '/img/camisa_jogador_amarela.jpeg',
-=======
-    price: 179.99, 
-    version: 'Jogador',
-    image_url: '/img/camisa_jogador_amarela.jpeg' 
->>>>>>> 413c86821c3776cb5d7343b8517455547d5f7f67
   },
   {
     id: 2,
@@ -202,15 +134,10 @@ const brazilProducts = ref([
     name: 'Camisa Brasil Torcedor 26/27',
     team: 'Seleção Brasileira',
     season: '2026/2027',
-<<<<<<< HEAD
     price: 149.99,
+    old_price: 229.99,
     version: 'Torcedor',
     image_url: '/img/camisa_torcedor_amarela.jpeg',
-=======
-    price: 149.99, 
-    version: 'Torcedor',
-    image_url: '/img/camisa_torcedor_amarela.jpeg' 
->>>>>>> 413c86821c3776cb5d7343b8517455547d5f7f67
   },
   {
     id: 3,
@@ -218,40 +145,43 @@ const brazilProducts = ref([
     name: 'Camisa Brasil Feminina 26/27',
     team: 'Seleção Brasileira',
     season: '2026/2027',
-<<<<<<< HEAD
+    old_price: 229.99,
     price: 149.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
   {
     id: 4,
-    slug: 'camisa-brasil-26-27-feminina',
-    name: 'Camisa Brasil Feminina 26/27',
+    slug: 'camisa-brasil-26-27-jogador-azul',
+    name: 'Camisa Brasil Jogador Azul 26/27',
     team: 'Seleção Brasileira',
     season: '2026/2027',
-    price: 149.99,
-    version: 'Feminina',
-    image_url: '/img/camisa_feminina_amarela.jpeg',
+    price: 179.99,
+    old_price: 229.99,
+    version: 'Jogador',
+    image_url: '/img/camisa_jogador_azul.jpeg',
   },
   {
     id: 5,
-    slug: 'camisa-brasil-26-27-feminina',
-    name: 'Camisa Brasil Feminina 26/27',
+    slug: 'camisa-brasil-26-27-torcedor-azul',
+    name: 'Camisa Brasil Torcedor Azul 26/27',
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
-    version: 'Feminina',
-    image_url: '/img/camisa_feminina_amarela.jpeg',
+    old_price: 229.99,
+    version: 'Torcedor',
+    image_url: '/img/camisa_feminina_azul.jpeg',
   },
   {
     id: 6,
-    slug: 'camisa-brasil-26-27-feminina',
-    name: 'Camisa Brasil Feminina 26/27',
+    slug: 'camisa-brasil-26-27-feminina-azul',
+    name: 'Camisa Brasil Feminina Azul 26/27',
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
-    image_url: '/img/camisa_feminina_amarela.jpeg',
+    image_url: '/img/camisa_feminina_azul.jpeg',
   },
 ])
 
@@ -264,6 +194,7 @@ const worldCupProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -274,6 +205,7 @@ const worldCupProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -284,6 +216,7 @@ const worldCupProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -294,6 +227,7 @@ const worldCupProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -304,6 +238,7 @@ const worldCupProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -314,6 +249,7 @@ const worldCupProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -329,6 +265,7 @@ const retroProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -339,6 +276,7 @@ const retroProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -349,6 +287,7 @@ const retroProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -359,6 +298,7 @@ const retroProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -369,6 +309,7 @@ const retroProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -379,6 +320,7 @@ const retroProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -393,6 +335,7 @@ const brasileiraoProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -403,6 +346,7 @@ const brasileiraoProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -413,6 +357,7 @@ const brasileiraoProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -423,6 +368,7 @@ const brasileiraoProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -433,6 +379,7 @@ const brasileiraoProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
@@ -443,26 +390,9 @@ const brasileiraoProducts = ref<Product[]>([
     team: 'Seleção Brasileira',
     season: '2026/2027',
     price: 149.99,
+    old_price: 229.99,
     version: 'Feminina',
     image_url: '/img/camisa_feminina_amarela.jpeg',
   },
 ])
 </script>
-=======
-    price: 149.99, 
-    version: 'Feminina',
-    image_url: '/img/camisa_feminina_amarela.jpeg' 
-  }
-])
-</script>
-
-<style scoped>
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-</style>
->>>>>>> 413c86821c3776cb5d7343b8517455547d5f7f67

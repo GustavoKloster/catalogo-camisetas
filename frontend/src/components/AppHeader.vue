@@ -10,9 +10,9 @@
             <span class="text-brand-dark text-lg font-black">⚽</span>
           </div>
           <div class="leading-tight">
-            <p class="text-white font-black text-base tracking-tight">THAI SHIRTS</p>
+            <p class="text-white font-black text-base tracking-tight">GG Imports</p>
             <p class="text-brand-gold text-[10px] font-semibold tracking-widest uppercase">
-              Premium Quality
+              Qualidade Premium
             </p>
           </div>
         </RouterLink>

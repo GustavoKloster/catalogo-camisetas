@@ -4,14 +4,10 @@
     <RouterLink :to="`/produto/${product.slug}`" class="flex flex-col h-full cursor-pointer">
       
       <div class="relative aspect-square overflow-hidden bg-brand-card flex items-center justify-center border-b border-brand-border/50">
-<<<<<<< HEAD
         
         <img v-if="product.image_url" :src="product.image_url" :alt="product.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
         
         <div v-else class="text-center select-none group-hover:scale-110 transition-transform duration-500">
-=======
-        <div class="text-center select-none group-hover:scale-110 transition-transform duration-500">
->>>>>>> 413c86821c3776cb5d7343b8517455547d5f7f67
           <span class="text-5xl block mb-2 opacity-80">👕</span>
           <span class="text-xs font-medium text-gray-500 tracking-wider">Ver Detalhes</span>
         </div>
@@ -31,14 +27,23 @@
           </h3>
         </div>
         
-        <div class="mt-auto flex items-center justify-between pt-2 border-t border-brand-border/30">
-          <p class="text-lg font-black text-white">
-            {{ formattedPrice }}
-          </p>
-          <span class="text-brand-gold opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 font-bold text-sm">
-            ➔
-          </span>
-        </div>
+        <div class="mt-3 flex flex-col">
+  <!-- Parte de cima: Preço Antigo + Etiqueta de Desconto -->
+           <div v-if="product.old_price" class="flex items-center gap-2 mb-1">
+           <span class="text-sm font-medium text-gray-500 line-through">
+      R$ {{ product.old_price.toFixed(2).replace('.', ',') }}
+        </span>
+    <!-- Etiqueta vermelha para criar senso de urgência -->
+           <span class="bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wide">
+             Oferta
+        </span>
+   </div>
+  
+  <!-- Parte de baixo: Preço Atual em Destaque Máximo -->
+  <span class="text-2xl font-black text-yellow-400 leading-none">
+    R$ {{ product.price.toFixed(2).replace('.', ',') }}
+  </span>
+</div>
       </div>
       
     </RouterLink>
@@ -58,15 +63,7 @@ const props = defineProps({
 
 // Formata o valor numérico para a moeda Real (R$)
 const formattedPrice = computed(() => {
-<<<<<<< HEAD
   const price = props.product.price ?? 0
   return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 })
 </script>
-=======
-  return props.product.price.toLocaleString('pt-BR', {
-    style: 'currency', currency: 'BRL',
-  })
-})
-</script>
->>>>>>> 413c86821c3776cb5d7343b8517455547d5f7f67
